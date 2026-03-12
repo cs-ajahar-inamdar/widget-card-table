@@ -1,0 +1,24 @@
+{
+    "name": "cardTable",
+    "title": "Card Table",
+    "subTitle": "Dynamic JSON to Card Viewer",
+    "version": "1.0.0",
+    "published_date": 1773282079,
+    "releaseNotes": "unavailable",
+    "metadata": {
+        "description": "The widget is used to show modules list, filter by group.",
+        "pages": [
+            "Dashboard",
+            "Reports",
+            "Listing",
+            "View Panel"
+        ],
+        "certified": "Yes",
+        "publisher": "Fortinet",
+        "compatibility": [
+            "8.0.0"
+        ],
+        "help_online": ""
+    },
+    "development": false
+}

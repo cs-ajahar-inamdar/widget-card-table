@@ -1,0 +1,33 @@
+<!-- Copyright start
+  Copyright (C) 2008 - 2026 Fortinet Inc.
+  All rights reserved.
+  FORTINET CONFIDENTIAL & FORTINET PROPRIETARY SOURCE CODE
+  Copyright end -->
+<div class="widget cardtable-widget-container">
+  <div class="cardtable-widget-content">
+    <div class="widget-cardview" data-ng-hide="processing || unauthorized">
+      <div class="card-table-container">
+        <div class="card-table-content">
+          <div class="card-table-content-header display-flex-space-between align-items-center">
+            <h5 class="margin-0 padding-0 font-size-16 text-muted">{{ config.title }}</h5>
+            <input class="form-control form-control-sm" type="text" placeholder="Search" ng-model="searchText" ng-model-options="{ debounce: 300 }"/>
+          </div>
+          <ul class="margin-0 card-table-content-list">
+            <li data-ng-repeat="record in fieldRows | filter:searchFilter" class="list-unstyled">
+              <a href target="_blank" data-ng-click="actions.onView(record)" class="display-flex-space-between text-decoration-none font-size-14">
+                <span class="text-muted">{{record.displayValue || ('APP.LABEL.NONE' | translate)}}</span>
+                <span data-ng-bind="record['total']"></span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div data-ng-show="processing">
+      <cs-spinner data-ng-hide="unauthorized" data-show-background="true"></cs-spinner>
+    </div>
+    <div data-ng-show="processing || unauthorized" class="unauthorized-message">
+      <h6 data-ng-show="unauthorized" class="text-center padding-top-md padding-bottom-md font200 font-size-15">{{'APP.MESSAGE.NECESSARY_PERMISSION_MSG' | translate: { 'resourceName': (config.resource | titlecase) } }}</h6>
+    </div>
+  </div>
+</div>
