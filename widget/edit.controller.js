@@ -58,7 +58,7 @@
         }
       };
       angular.extend($scope.config, _config, config);
-      $scope.header = translationService.instantTranslate($scope.config.title ? 'COMPONENTS.VIEW_TEMPLATES.WIDGETS.LISTS.EDIT_CARD_COUNT_WIDGET' : 'COMPONENTS.VIEW_TEMPLATES.WIDGETS.LISTS.ADD_CARD_TABLE_WIDGET');
+      $scope.header = translationService.instantTranslate($scope.config.title ? 'COMPONENTS.VIEW_TEMPLATES.WIDGETS.LISTS.EDIT_CARD_TABLE_WIDGET' : 'COMPONENTS.VIEW_TEMPLATES.WIDGETS.LISTS.ADD_CARD_TABLE_WIDGET');
       $scope.loadAttributes(true);
     };
 
