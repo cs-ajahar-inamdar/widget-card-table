@@ -1,0 +1,44 @@
+/* Core truncation logic */
+.title-truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0; /* Allows the element to shrink smaller than its text content */
+  padding-right: 10px; /* Space between title and icons */
+}
+
+/* Ensure the search bar doesn't completely crush the title */
+.search-expanded {
+  width: 150px; /* Or whatever width fits your small screen best */
+  flex-shrink: 0; /* Don't let the search bar get squished */
+}
+
+/* Optional: Only apply tight truncation when the search is active */
+.is-searching {
+  flex-basis: 40%; /* Adjust this percentage to control how much title remains visible */
+}
+
+.card-table-content-header {
+    padding: 0 16px;       /* Removed vertical padding to use height instead */
+    height: 40px;          /* Set a fixed height for the header row */
+    display: flex;         /* Ensure children align correctly */
+    align-items: center;   /* Vertically centers title, search, and icons */
+    
+    h5 {
+    line-height: 40px;   /* Matches header height */
+    margin: 0;
+    }
+
+    .search-grid {
+    height: 28px;        /* Force a smaller height on the input */
+    margin: 0 8px;       /* Give it some side breathing room */
+    padding: 2px 8px;    /* Tighten internal padding */
+    font-size: 12px;
+    }
+
+    .icon {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    }
+}

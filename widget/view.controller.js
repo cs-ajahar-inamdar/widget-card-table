@@ -11,11 +11,11 @@
 
   cardTable100Ctrl.$inject = ['$scope', 'config', '$state', '$filter', 'currentPermissionsService',
     'Query', 'Entity', 'localStorageService', 'chartFilter', 'API', '$resource',
-    'CommonUtils', '_', '$interpolate', '$rootScope', '$q'
+    'CommonUtils', '_', '$interpolate', '$rootScope', '$q', '$timeout'
   ];
 
   function cardTable100Ctrl($scope, config, $state, $filter, currentPermissionsService,
-    Query, Entity, localStorageService, chartFilter, API, $resource, CommonUtils, _, $interpolate, $rootScope, $q) {
+    Query, Entity, localStorageService, chartFilter, API, $resource, CommonUtils, _, $interpolate, $rootScope, $q, $timeout) {
 
     var entity = null;
     $scope.assignedFieldName = '';
@@ -173,7 +173,7 @@
           cFilter.value = _objectCopy(filter.value);
           if (filter.value.displayName) {
             cFilter.display = filter.value.displayName;
-          } else {
+          } else if(!angular.isUndefined(filter.displayTemplate)) {
             cFilter.display = $interpolate(filter.displayTemplate)(filter.value);
             if (cFilter.display) {
               delete cFilter.displayTemplate;
@@ -212,6 +212,12 @@
       var value = record.displayValue || 'None';
 
       return value.toLowerCase().indexOf($scope.searchText.toLowerCase()) !== -1;
+    };
+
+    $scope.focusSearchField = function(){
+      $timeout(function (){
+        document.querySelector('#search-'+$scope.config.wid).focus();
+      }, 0);
     };
 
   }
