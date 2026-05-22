@@ -125,16 +125,31 @@
           var fieldRows = angular.copy(resultFieldRows);
           resultFieldRows = [];
           angular.forEach(fieldRows, function (fieldRow) {
-            fieldRow.displayValue = fieldRow[_config.mapping.fieldName] ? $filter('date')($filter('unixToDate')(fieldRow[_config.mapping.fieldName]), $rootScope.appDatetimeFormat) : 'None';
-            var existRow = _.find(resultFieldRows, function (fRow) {
-              return fRow.displayValue === fieldRow.displayValue;
+            fieldRow.displayValue = fieldRow[_config.mapping.fieldName] ? $filter('date')($filter('unixToDate')(fieldRow[_config.mapping.fieldName]), 'MM/dd/yyyy') : 'None';
+            var dateExist = _.find(resultFieldRows, function (fRow) {
+              return fRow === fieldRow.displayValue;
             });
-            if (existRow) {
-              existRow.total += fieldRow.total;
-            } else {
-              resultFieldRows.push(angular.copy(fieldRow));
+            if(!dateExist) {
+              resultFieldRows.push(fieldRow.displayValue);
+            }else {
+              var existRow = _.find(fieldRows, function (fRow) {
+                return fRow.displayValue === fieldRow.displayValue;
+              });
+              if (existRow) {
+                existRow.total += fieldRow.total;
+              } else {
+                fieldRows.push(angular.copy(fieldRow));
+              }
             }
           });
+          let oldResult = angular.copy(fieldRows);
+          fieldRows = [];
+          angular.forEach(resultFieldRows, function(date) {
+            fieldRows.push(_.find(oldResult, function(result) {
+              return result.displayValue === date; 
+            }));
+          });
+          resultFieldRows = fieldRows;
         }
       }
       defer.resolve(resultFieldRows);
